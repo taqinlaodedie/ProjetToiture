@@ -390,9 +390,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>::CMSIS</GroupName>
-        </Group>
-        <Group>
           <GroupName>Application/User</GroupName>
           <Files>
             <File>
@@ -429,6 +426,26 @@
               <FileName>dwt_stm32_delay.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\dwt_stm32_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>TCS34725.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TCS34725.c</FilePath>
+            </File>
+            <File>
+              <FileName>TCS34725.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TCS34725.h</FilePath>
+            </File>
+            <File>
+              <FileName>DEV_Config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DEV_Config.c</FilePath>
+            </File>
+            <File>
+              <FileName>DEV_Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DEV_Config.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -551,6 +568,9 @@
               <FilePath>../Src/system_stm32l4xx.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>

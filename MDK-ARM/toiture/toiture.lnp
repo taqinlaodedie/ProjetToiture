@@ -5,6 +5,8 @@
 "toiture\stm32l4xx_hal_msp.o"
 "toiture\dht22.o"
 "toiture\dwt_stm32_delay.o"
+"toiture\tcs34725.o"
+"toiture\dev_config.o"
 "toiture\stm32l4xx_hal_adc.o"
 "toiture\stm32l4xx_hal_adc_ex.o"
 "toiture\stm32l4xx_hal_i2c.o"

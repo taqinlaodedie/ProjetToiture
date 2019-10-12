@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "DHT22.h"
 #include "dwt_stm32_delay.h"
+#include "TCS34725.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -77,6 +78,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	uint16_t air_hum;
 	int16_t air_temp;
+	RGB rgb;
   /* USER CODE END 1 */
   
 
@@ -113,6 +115,7 @@ int main(void)
 		dht_read();
 		air_hum = dht_hum();
 		air_temp = dht_tmp();
+		rgb = TCS34725_Get_RGBData();
 		HAL_Delay(5000);
     /* USER CODE BEGIN 3 */
   }
