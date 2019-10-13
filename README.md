@@ -8,6 +8,6 @@
    - Un ADA1334 pour la couleur lumineuse  
    - Un ADA1384 pour l'intensité lumineuse    
    
-  Les donées seront envoyées par un module Sigfox et tranmises vers la plateform Ubidots pour les visualiser.  
+  Les donées seront envoyées par un module Sigfox et tranmises vers la plateforme Ubidots pour les visualiser.  
   Voici le shéma de câblage:  
   ![image](https://github.com/taqinlaodedie/ProjetToiture/blob/master/schema_final.png)
