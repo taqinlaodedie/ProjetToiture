@@ -35,4 +35,7 @@ toiture\stm32l4xx_it.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h
 toiture\stm32l4xx_it.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h
 toiture\stm32l4xx_it.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h
 toiture\stm32l4xx_it.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
+toiture\stm32l4xx_it.o: ..\MDK-ARM\TCS34725.h
+toiture\stm32l4xx_it.o: ..\MDK-ARM\DEV_Config.h
+toiture\stm32l4xx_it.o: ../Inc/main.h
 toiture\stm32l4xx_it.o: ../Inc/stm32l4xx_it.h

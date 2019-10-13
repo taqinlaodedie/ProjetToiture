@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L432xx,USE_HAL_DRIVER,STM32L432xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32L4xx_HAL_Driver/Inc;../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32L4xx/Include;../Drivers/CMSIS/Include;..\MDK-ARM</IncludePath>
+              <IncludePath>../Inc; ../Drivers/STM32L4xx_HAL_Driver/Inc; ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32L4xx/Include; ../Drivers/CMSIS/Include; ..\MDK-ARM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,21 +393,6 @@
           <GroupName>Application/User</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/main.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/stm32l4xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_hal_msp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/stm32l4xx_hal_msp.c</FilePath>
-            </File>
-            <File>
               <FileName>DHT22.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\DHT22.c</FilePath>
@@ -446,6 +431,41 @@
               <FileName>DEV_Config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\DEV_Config.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sigfox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Sigfox.c</FilePath>
+            </File>
+            <File>
+              <FileName>Sigfox.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Sigfox.h</FilePath>
+            </File>
+            <File>
+              <FileName>ds18b20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ds18b20.c</FilePath>
+            </File>
+            <File>
+              <FileName>ds18b20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ds18b20.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/main.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/stm32l4xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_msp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/stm32l4xx_hal_msp.c</FilePath>
             </File>
           </Files>
         </Group>

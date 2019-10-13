@@ -26,6 +26,9 @@
 #include "DHT22.h"
 #include "dwt_stm32_delay.h"
 #include "TCS34725.h"
+#include "ds18b20.h"
+#include "sigfox.h"
+#include <math.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,6 +55,11 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 uint8_t dht_hum_l, dht_hum_h, dht_tmp_l, dht_tmp_h;
+uint16_t air_hum, soil_hum;
+int16_t air_temp, soil_temp;
+RGB rgb;
+uint8_t lux;
+uint32_t val_adc[2];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -62,6 +70,7 @@ static void MX_I2C1_Init(void);
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 void user_init(void);
+void read_sensors(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -76,9 +85,7 @@ void user_init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	uint16_t air_hum;
-	int16_t air_temp;
-	RGB rgb;
+	
   /* USER CODE END 1 */
   
 
@@ -112,11 +119,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-		dht_read();
-		air_hum = dht_hum();
-		air_temp = dht_tmp();
-		rgb = TCS34725_Get_RGBData();
-		HAL_Delay(5000);
+		read_sensors();
+		sigfox_send();
+		HAL_Delay(60000);	// Attendre 1 min
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -217,11 +222,11 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   hadc1.Init.LowPowerAutoWait = DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
-  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.NbrOfConversion = 2;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
@@ -234,12 +239,20 @@ static void MX_ADC1_Init(void)
   }
   /** Configure Regular Channel 
   */
-  sConfig.Channel = ADC_CHANNEL_11;
+  sConfig.Channel = ADC_CHANNEL_6;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
   sConfig.SingleDiff = ADC_DIFFERENTIAL_ENDED;
   sConfig.OffsetNumber = ADC_OFFSET_NONE;
   sConfig.Offset = 0;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure Regular Channel 
+  */
+  sConfig.Channel = ADC_CHANNEL_11;
+  sConfig.Rank = ADC_REGULAR_RANK_2;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -312,7 +325,7 @@ static void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
+  huart1.Init.BaudRate = 9600;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -373,6 +386,28 @@ static void MX_GPIO_Init(void)
 void user_init(void)
 {
 	DWT_Delay_Init();
+	HAL_ADC_Start_DMA(&hadc1, val_adc, 2);
+}
+
+void read_sensors(void)
+{
+	float adc_percent, tmp;
+	
+	dht_read();
+	air_hum = dht_hum();
+	air_temp = dht_tmp();
+	
+	rgb = TCS34725_Get_RGBData();
+	
+	soil_temp = ds18b20_temp();
+	adc_percent = (float)val_adc[0] / 4095;	// Convertir la valeur d'adc a une valeur entre 0 et 1
+	tmp = ((adc_percent-GROVE_MOIST_MIN) / (GROVE_MOIST_MAX - GROVE_MOIST_MIN)) * 100;
+	soil_hum = tmp * 10;
+	
+	adc_percent = (float)val_adc[1] / 4095;
+	tmp = adc_percent*LOG_RANGE/RAW_RANGE;
+	tmp = pow(10,tmp)*255/10000;
+	lux = tmp;
 }
 /* USER CODE END 4 */
 

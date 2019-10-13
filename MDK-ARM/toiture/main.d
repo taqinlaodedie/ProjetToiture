@@ -35,7 +35,11 @@ toiture\main.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h
 toiture\main.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h
 toiture\main.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h
 toiture\main.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
-toiture\main.o: ..\MDK-ARM\DHT22.h
-toiture\main.o: ..\MDK-ARM\dwt_stm32_delay.h
 toiture\main.o: ..\MDK-ARM\TCS34725.h
 toiture\main.o: ..\MDK-ARM\DEV_Config.h
+toiture\main.o: ../Inc/main.h
+toiture\main.o: ..\MDK-ARM\DHT22.h
+toiture\main.o: ..\MDK-ARM\dwt_stm32_delay.h
+toiture\main.o: ..\MDK-ARM\ds18b20.h
+toiture\main.o: ..\MDK-ARM\sigfox.h
+toiture\main.o: D:\Keil5\ARM\ARMCC\Bin\..\include\math.h

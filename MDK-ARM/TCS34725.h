@@ -28,6 +28,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 ******************************************************************************/
+#ifndef _TCS34725_H_
+#define _TCS34725_H_
+
 #include "DEV_Config.h"
 
 /**
@@ -124,17 +127,19 @@ typedef enum
 TCS34725IntegrationTime_t;
 
 typedef struct{
-   UWORD R;
-   UWORD G;
-   UWORD B;
-   UWORD C;
+   uint16_t R;
+   uint16_t G;
+   uint16_t B;
+   uint16_t C;
 }RGB;
 
 /*-----------------------------------------------------------------------------*/
 //initialization
-UBYTE TCS34725_Init(void);
+uint8_t TCS34725_Init(void);
 void TCS34725_Set_IntegrationTime(TCS34725IntegrationTime_t it);
 // void TCS34725_Set_Config(TCS34725Gain_t gain, TCS34725IntegrationTime_t it);
 
 //Read Color
 RGB TCS34725_Get_RGBData(void);
+
+#endif
