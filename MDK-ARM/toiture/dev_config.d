@@ -38,3 +38,4 @@ toiture\dev_config.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h
 toiture\dev_config.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
 toiture\dev_config.o: ..\MDK-ARM\TCS34725.h
 toiture\dev_config.o: ..\MDK-ARM\DEV_Config.h
+toiture\dev_config.o: ..\MDK-ARM\dwt_stm32_delay.h

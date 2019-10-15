@@ -119,9 +119,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
 		read_sensors();
 		sigfox_send();
-		HAL_Delay(60000);	// Attendre 1 min
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_Delay(30000);	// Attendre 1 min
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -405,7 +407,7 @@ void read_sensors(void)
 	soil_hum = tmp * 10;
 	
 	adc_percent = (float)val_adc[1] / 4095;
-	tmp = adc_percent*LOG_RANGE/RAW_RANGE;
+	tmp = adc_percent*LOG_RANGE;
 	tmp = pow(10,tmp)*255/10000;
 	lux = tmp;
 }

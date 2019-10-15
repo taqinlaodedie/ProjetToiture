@@ -1,6 +1,9 @@
 #include "ds18b20.h"
 #include "main.h"
-#include "dwt_stm32_delay.h"
+
+#define READ() 			HAL_GPIO_ReadPin(DS18B20_GROUP, DS18B20_PIN)
+#define OUT_SET() 	HAL_GPIO_WritePin(DS18B20_GROUP, DS18B20_PIN, GPIO_PIN_SET)
+#define OUT_RESET()	HAL_GPIO_WritePin(DS18B20_GROUP, DS18B20_PIN, GPIO_PIN_RESET)
 
 // PA0 comme entree
 void ds18b20_input(void)
@@ -30,17 +33,19 @@ void ds18b20_output(void)
   */
 uint8_t ds18b20_reset(void)
 {
-	uint8_t res;
-	
 	ds18b20_output();
 	OUT_RESET();	// pin = 0
-	DWT_Delay_us(500);	// Attendre plus de 480us
+	DWT_Delay_us(480);	// Attendre plus de 480us
 	ds18b20_input();
-	DWT_Delay_us(70);		// Attendre pendant 70us
-	res = !READ();	// Lire la reponse
-	while(!READ());	// Attendre la pulse de reponse finit
-	
-	return res;
+	DWT_Delay_us(80);		// Attendre pendant 80us
+	if(!READ()) {	// Lire la reponse
+		DWT_Delay_us(400);
+		return 0;
+	}
+	else {
+		DWT_Delay_us(400);
+		return 1;
+	}
 }
 
 // Ecrire un bit vers ds18b20
@@ -141,6 +146,7 @@ int16_t ds18b20_temp(void)
 	ds18b20_convert();
 	if(!ds18b20_reset())
 		Error_Handler();
+	HAL_Delay (800);
 	ds18b20_write_byte(0xcc);	// Skip ROM
 	ds18b20_write_byte(0xbe);	// Commencer a lire
 	th = ds18b20_read_byte();
@@ -153,9 +159,9 @@ int16_t ds18b20_temp(void)
 	else
 		sign = 1;	// Temperature positive
 	temp = th;
-	temp = temp << 8;
-	temp += tl;
-	temp = (float)temp * 0.625;
+	temp <<= 8;
+	temp |= tl;
+	temp = (int16_t)((float)temp * 0.625);
 	if(sign)
 		return temp;
 	

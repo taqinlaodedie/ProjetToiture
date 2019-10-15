@@ -39,4 +39,4 @@ toiture\ds18b20.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
 toiture\ds18b20.o: ..\MDK-ARM\TCS34725.h
 toiture\ds18b20.o: ..\MDK-ARM\DEV_Config.h
 toiture\ds18b20.o: ../Inc/main.h
-toiture\ds18b20.o: dwt_stm32_delay.h
+toiture\ds18b20.o: ..\MDK-ARM\dwt_stm32_delay.h

@@ -38,5 +38,7 @@ toiture\sigfox.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
 toiture\sigfox.o: ..\MDK-ARM\TCS34725.h
 toiture\sigfox.o: ..\MDK-ARM\DEV_Config.h
 toiture\sigfox.o: ../Inc/main.h
+toiture\sigfox.o: ..\MDK-ARM\dwt_stm32_delay.h
 toiture\sigfox.o: sigfox.h
 toiture\sigfox.o: D:\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+toiture\sigfox.o: printf.h

@@ -33,6 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "TCS34725.h"
+#include "dwt_stm32_delay.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -40,7 +41,6 @@ extern "C" {
 #define GROVE_MOIST_MIN     0.0f
 #define GROVE_MOIST_MAX     0.55f
 #define LOG_RANGE           5.0f
-#define RAW_RANGE           1024.0f
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

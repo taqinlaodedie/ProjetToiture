@@ -403,16 +403,6 @@
               <FilePath>.\DHT22.h</FilePath>
             </File>
             <File>
-              <FileName>dwt_stm32_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\dwt_stm32_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>dwt_stm32_delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\dwt_stm32_delay.h</FilePath>
-            </File>
-            <File>
               <FileName>TCS34725.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\TCS34725.c</FilePath>
@@ -466,6 +456,26 @@
               <FileName>stm32l4xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/stm32l4xx_hal_msp.c</FilePath>
+            </File>
+            <File>
+              <FileName>printf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\printf.c</FilePath>
+            </File>
+            <File>
+              <FileName>printf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\printf.h</FilePath>
+            </File>
+            <File>
+              <FileName>dwt_stm32_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dwt_stm32_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>dwt_stm32_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dwt_stm32_delay.c</FilePath>
             </File>
           </Files>
         </Group>
